@@ -1,5 +1,7 @@
 package main
 
+import "fmt"
+
 // Given an integer array nums sorted in non-decreasing order, remove the duplicates in-place such that each unique
 // element appears only once. The relative order of the elements should be kept the same. Then return the number of
 // unique elements in nums.
@@ -47,9 +49,27 @@ package main
 //	-100 <= nums[i] <= 100
 //	nums is sorted in non-decreasing order.
 func main() {
-
+	fmt.Println(removeDuplicates([]int{1}))
+	fmt.Println(removeDuplicates([]int{1, 1}))
+	fmt.Println(removeDuplicates([]int{1, 2}))
+	fmt.Println(removeDuplicates([]int{1, 1, 2}))
+	fmt.Println(removeDuplicates([]int{1, 2, 3}))
+	fmt.Println(removeDuplicates([]int{0, 0, 1, 1, 1, 2, 2, 3, 3, 4, 4, 4, 4}))
 }
 
 func removeDuplicates(nums []int) int {
-	return 0
+
+	if len(nums) == 1 {
+		return len(nums)
+	}
+
+	idx := 1
+	for i := 1; i < len(nums); i++ {
+		if nums[i] != nums[i-1] {
+			nums[idx] = nums[i]
+			idx++
+		}
+	}
+
+	return idx
 }
